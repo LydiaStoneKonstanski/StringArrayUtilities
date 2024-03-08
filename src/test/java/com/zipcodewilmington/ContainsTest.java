@@ -3,7 +3,7 @@ package com.zipcodewilmington;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ContainsTest {
+public class  ContainsTest {
 
     @Test
     public void testContains() {
