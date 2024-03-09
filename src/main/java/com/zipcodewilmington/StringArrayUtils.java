@@ -22,7 +22,7 @@ public class StringArrayUtils {
      * @return second element in specified array
      */
     public static String getSecondElement(String[] array) {
-            return array [1];
+        return array[1];
     }
 
     /**
@@ -63,7 +63,7 @@ public class StringArrayUtils {
      * @param array of String objects
      * @return an array with identical contents in reverse order
      */ // TODO
-    public static String[] reverse (String[]array){
+    public static String[] reverse(String[] array) {
         String[] b = new String[array.length];
         int j = array.length;
         for (int i = 0; i < array.length; i++) {
@@ -77,42 +77,65 @@ public class StringArrayUtils {
      * @param array array of String objects
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
-    public static boolean isPalindromic (String[]array){
+    public static boolean isPalindromic(String[] array) {
         String[] reversedStringArray = reverse(array);
-        if(reversedStringArray.equals(array)){
+        if (reversedStringArray.equals(array)) {
             return true;
         }
         return false;
     }
 
-    /**
-     * @param array array of String objects
-     * @return true if each letter in the alphabet has been used in the array
-     */ // TODO
-    public static boolean isPangramic (String[]array){
-
-        //check all the characters could turn all the characters into one string,
-        //or nest for each string in array and each character in string.
-        //compare to alphabet.
-        //if alphabet letter does not appear in the strings, false.
-        //else return true.
+    //    /**
+//     * @param array array of String objects
+//     * @return true if each letter in the alphabet has been used in the array
+//     */ // TODO
+    public static boolean isPangramic(String[] array) {
 
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        //convert input array to lowercase
+        for (int i = 0; i < array.length; i++) {
+            array[i] = array[i].toLowerCase();
+        }
+        for (char letter : alphabet.toCharArray()) {
+            boolean foundLetter = false;
 
-        //iterate through contents of each string in the array
-        for (Character letter : alphabet.toCharArray()) {
             for (String item : array) {
-                for (Character c : item.toCharArray()) {
-                    // Add logic for true
-                    if(letter.equals(c)){
-                        foundLetter = true;
-                    }
-                }
+                if(item.indexOf(letter) != -1) {
+                foundLetter = true;
+                break;
             }
+        }
+        if (!foundLetter) {
             return false;
         }
-        return true;
     }
+    return true;
+}
+
+//        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+//
+//        //iterate through the alphabet
+//        for (char letter : alphabet.toCharArray()) {
+//            boolean foundLetter = false;
+//            //iterate through given array
+//            for (String item : array) {
+//                //convert given array to lowercase
+//                item = item.toLowerCase();
+//                //compare the alphabet letter to the strings in the given array
+//                for (item.indexOf(letter) != -1) {
+//                    foundLetter = true;
+//                    break; //Exit when a letter is found in the current string
+//
+//                    }
+//                }
+//            //if letter not found in any string, return false.
+//            if (!foundLetter){
+//                return false;
+//            }
+//        }
+//        //If all letters found in the array, return true!
+//        return true;
+//    }
 
     /**
      * @param array array of String objects
