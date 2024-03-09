@@ -90,18 +90,17 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic (String[]array){
-        //iterate through contents of each string in the array
+
         //check all the characters could turn all the characters into one string,
         //or nest for each string in array and each character in string.
         //compare to alphabet.
         //if alphabet letter does not appear in the strings, false.
         //else return true.
 
-        // Iterate through array
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
 
+        //iterate through contents of each string in the array
         for (Character letter : alphabet.toCharArray()) {
-            Boolean foundLetter = false;
             for (String item : array) {
                 for (Character c : item.toCharArray()) {
                     // Add logic for true
@@ -141,7 +140,7 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] removeValue (String[]array, String valueToRemove){
         //create an empty array list
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         for(String eachItem : array){
             //iterate through the array, if item in array != valueToRemove,
             // store in array list
@@ -150,7 +149,7 @@ public class StringArrayUtils {
             }
         }
         //convert array list to array at the end.
-        return (String[])list.toArray();
+        return list.toArray(new String[0]);
     }
 
     /**
@@ -158,8 +157,8 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates (String[]array){
-        //convert to array list,
-        List<String> list = new ArrayList<String>();
+        //convert array to an array list,
+        List<String> list = new ArrayList<>();
         //iterate through array,
         //if same, don't add current item,otherwise do add it,
         for(int i = 0; i <= array.length-2; i++){
@@ -171,33 +170,42 @@ public class StringArrayUtils {
         }
         //convert back to array
         //return new
-        return (String[])list.toArray();
+        return list.toArray(new String[0]);
     }
 
     /**
      * @param array array of chars
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
-    public static String[] packConsecutiveDuplicates (String[]array){
-        //iterate through array,
-        //if same, send to string with +,
-        //create an array with index of 0,
-        //put the string into the singleIndexArray
-        //return singleIndexArray.
-        return null;
-    }
+    public static String[] packConsecutiveDuplicates (String[]array) {
+        //convert array to an array list
+        List<String> list = new ArrayList<>();
+        // iterate through each character.
+        int i = 0;
+        while (i < array.length) {
+            String currentItem = array[i];
+            StringBuilder packed = new StringBuilder(currentItem);
 
-
-    // This is a useful function for future reference
-    private static int[] getRandomArray(int len) {
-
-        Random random = new Random();
-        int[] newInt = new int[len];
-        for (int i = 0; i < len; i++) {
-            newInt[i] = random.nextInt(100);
+            while (i < array.length - 1 && currentItem.equals(array[i + 1])) {
+                packed.append(array[i + 1]);
+                i++;
+            }
+            list.add(packed.toString());
+            i++;
         }
-        return newInt;
+        return list.toArray(new String[0]);
     }
+
+//    // This is a useful function for future reference
+//    private static int[] getRandomArray(int len) {
+//
+//        Random random = new Random();
+//        int[] newInt = new int[len];
+//        for (int i = 0; i < len; i++) {
+//            newInt[i] = random.nextInt(100);
+//        }
+//        return newInt;
+//    }
 
             // Notes - this is useful information:
 //            int[] firstArray = getRandomArray(len 10);
