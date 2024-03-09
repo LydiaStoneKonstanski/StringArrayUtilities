@@ -79,10 +79,13 @@ public class StringArrayUtils {
      */ // TODO
     public static boolean isPalindromic(String[] array) {
         String[] reversedStringArray = reverse(array);
-        if (reversedStringArray.equals(array)) {
-            return true;
+
+        for (int i = 0; i < array.length; i++) {
+            if (!array[i].equals(reversedStringArray[i])) {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 
     //    /**
@@ -111,31 +114,6 @@ public class StringArrayUtils {
     }
     return true;
 }
-
-//        String alphabet = "abcdefghijklmnopqrstuvwxyz";
-//
-//        //iterate through the alphabet
-//        for (char letter : alphabet.toCharArray()) {
-//            boolean foundLetter = false;
-//            //iterate through given array
-//            for (String item : array) {
-//                //convert given array to lowercase
-//                item = item.toLowerCase();
-//                //compare the alphabet letter to the strings in the given array
-//                for (item.indexOf(letter) != -1) {
-//                    foundLetter = true;
-//                    break; //Exit when a letter is found in the current string
-//
-//                    }
-//                }
-//            //if letter not found in any string, return false.
-//            if (!foundLetter){
-//                return false;
-//            }
-//        }
-//        //If all letters found in the array, return true!
-//        return true;
-//    }
 
     /**
      * @param array array of String objects
@@ -191,6 +169,7 @@ public class StringArrayUtils {
                 list.add(eachItem);
             }
         }
+        list.add(array[array.length -1]);
         //convert back to array
         //return new
         return list.toArray(new String[0]);
